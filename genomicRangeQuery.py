@@ -11,7 +11,7 @@ def solution(A,P,Q):
 	result = []
 	for j in xrange(m):
 		numOfNu = map(lambda x,y: x - y, preSum[Q[j]+1], preSum[P[j]])
-		result.append(numOfNu.index(not 0)+1)
+		result.append(next((i+1 for i, x in enumerate(numOfNu) if x), None))
 	return result
 
 print solution('ACGC',[0,1],[3,2])
