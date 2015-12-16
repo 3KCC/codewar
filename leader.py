@@ -19,18 +19,37 @@ def nlogn_solution(A):
 
 def n_solution(A):
 	n = len(A)
-	candidate = None
+	size = 0
 	for i in xrange(n):
-		if candidate and A[i] != candidate:
-			candidate = None
+		if size and A[i] != candidate:
+			size -= 1
 		else:
 			candidate = A[i]
-	if candidate:
-		count = 0
+			size += 1
+	count = 0
+	if size:
 		for i in xrange(n):
 			if A[i] == candidate:
 				count += 1
 	return candidate if count > n/2 else -1
+
+#return index
+def solution(A):
+    n = len(A)
+    idx = -1
+    size = 0
+    for i in xrange(n):
+    	if size != 0 and A[i] != A[idx]:
+    		size -= 1
+    	else:
+    		idx = i
+    		size += 1
+    count = 0
+    if size != 0:
+    	for i in xrange(n):
+    		if A[i] == A[idx]:
+    			count += 1
+    return idx if count > n/2 else -1
 
 
 print n_solution([6,8,4,6,8,6,6])
